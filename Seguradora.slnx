@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Seguradora.Api/Seguradora.Api.csproj" Id="c23e723e-99ee-4ede-80f1-ee74ab40bdc9" />
+    <Project Path="Seguradora.Application/Seguradora.Application.csproj" Id="e213cce4-c528-42bd-93f6-543f758f373a" />
+    <Project Path="Seguradora.Domain/Seguradora.Domain.csproj" Id="cdf05cd5-ef3a-4d5b-be6d-2312a65c49d1" />
+    <Project Path="Seguradora.Infrastructure/Seguradora.Infrastructure.csproj" Id="25250d4d-7bef-47e4-9781-241f68a4354c" />
+  </Folder>
+  <Folder Name="/testes/">
+    <Project Path="Seguradora.Architecture.Tests/Seguradora.Architecture.Tests.csproj" Id="3cb21d7b-5852-4185-8d2a-997e6d87fe12" />
+    <Project Path="Seguradora.Domain.Tests/Seguradora.Domain.Tests.csproj" Id="34f86f4b-585d-41be-8aa7-3758e310986d" />
+  </Folder>
+</Solution>

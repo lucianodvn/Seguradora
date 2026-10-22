@@ -11,7 +11,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.89" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="9.2.3" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="9.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Seguradora.Application\Seguradora.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Seguradora.Api.IntegrationTests" />
   </ItemGroup>
 
 </Project>

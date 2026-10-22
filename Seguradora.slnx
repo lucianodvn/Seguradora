@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/Itens de Solução/">
+    <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
+    <File Path="docker-compose.yml" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="Seguradora.Api/Seguradora.Api.csproj" Id="c23e723e-99ee-4ede-80f1-ee74ab40bdc9" />
@@ -9,7 +11,10 @@
     <Project Path="Seguradora.Infrastructure/Seguradora.Infrastructure.csproj" Id="25250d4d-7bef-47e4-9781-241f68a4354c" />
   </Folder>
   <Folder Name="/testes/">
+    <Project Path="Seguradora.Api.IntegrationTests/Seguradora.Api.IntegrationTests.csproj" Id="0916535d-6909-47a4-9c2f-2f009a8db593" />
+    <Project Path="Seguradora.Application.Tests/Seguradora.Application.Tests.csproj" Id="0561ebae-c039-4cf3-9d3e-88c1ae0c1fee" />
     <Project Path="Seguradora.Architecture.Tests/Seguradora.Architecture.Tests.csproj" Id="3cb21d7b-5852-4185-8d2a-997e6d87fe12" />
+    <Project Path="Seguradora.Domain.Tests.Sinistros/Seguradora.Domain.Tests.Sinistros.csproj" Id="a435a154-dab6-4dc9-bea8-30762a36a0cf" />
     <Project Path="Seguradora.Domain.Tests/Seguradora.Domain.Tests.csproj" Id="34f86f4b-585d-41be-8aa7-3758e310986d" />
   </Folder>
 </Solution>

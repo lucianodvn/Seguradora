@@ -11,19 +11,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Seguradora.Application\Seguradora.Application.csproj" />
+    <ProjectReference Include="..\Seguradora.Domain\Seguradora.Domain.csproj" />
     <ProjectReference Include="..\Seguradora.Infrastructure\Seguradora.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 <PropertyGroup>
   <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+  <UserSecretsId>21e290c9-9aa5-4feb-8730-15fec1f93762</UserSecretsId>
 </PropertyGroup>
 </Project>

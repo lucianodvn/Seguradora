@@ -59,5 +59,50 @@ namespace Seguradora.Architecture.Tests
 
             Assert.True(result.IsSuccessful);
         }
+
+        [Fact]
+        public void HandlersDaApplicationDevemSerInternos()
+        {
+            var result = Types.InAssembly(Application)
+                .That().AreClasses().And().HaveNameEndingWith("Handler")
+                .ShouldNot().BePublic()
+                .GetResult();
+
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void RepositoriosDbContextEConfigurationsDaInfrastructureDevemSerInternos()
+        {
+            var result = Types.InAssembly(Infrastructure)
+                .That().HaveNameEndingWith("Repository")
+                .Or().HaveNameEndingWith("DbContext")
+                .Or().HaveNameEndingWith("Configuration")
+                .ShouldNot().BePublic()
+                .GetResult();
+
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void ControllersNaoDependemDoDomain()
+        {
+            var result = Types.InAssembly(Api)
+                .That().HaveNameEndingWith("Controller")
+                .ShouldNot().HaveDependencyOn("Seguradora.Domain")
+                .GetResult();
+
+            Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void ApiNaoDependeDoEFCore()
+        {
+            var result = Types.InAssembly(Api)
+                .ShouldNot().HaveDependencyOn("Microsoft.EntityFrameworkCore")
+                .GetResult();
+
+            Assert.True(result.IsSuccessful);
+        }
     }
 }

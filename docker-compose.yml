@@ -1,0 +1,29 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: seguradora-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+  
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: seguradora-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    volumes:
+      - rabbitdata:/var/lib/rabbitmq
+
+volumes:
+  sqldata:
+  rabbitdata:  
+
+  

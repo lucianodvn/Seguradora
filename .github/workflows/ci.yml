@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-e-testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          # o 9.0.x lê o formato .slnx; o 8.0.x fornece o runtime dos testes (net8.0)
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Testes com cobertura
+        run: dotnet test --no-build -c Release --collect:"XPlat Code Coverage" --results-directory ./cobertura
+
+      - name: Relatório de cobertura
+        if: always()
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:"cobertura/**/coverage.cobertura.xml" -targetdir:"cobertura/relatorio" -reporttypes:"Html;MarkdownSummaryGithub" -classfilters:"-*.Migrations.*"
+          cat cobertura/relatorio/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Publicar relatório HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-cobertura
+          path: cobertura/relatorio
+
+      - name: Build da imagem Docker
+        run: docker build -t seguradora-api .

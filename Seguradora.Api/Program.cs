@@ -84,6 +84,11 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 
+if (app.Environment.IsDevelopment())
+{
+    await app.Services.AplicarMigracoesAsync();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

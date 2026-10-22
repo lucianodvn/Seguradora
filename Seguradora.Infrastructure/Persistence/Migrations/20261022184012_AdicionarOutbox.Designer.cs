@@ -12,7 +12,7 @@ using Seguradora.Infrastructure.Persistence;
 namespace Seguradora.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SeguradoraDbContext))]
-    [Migration("20261022164205_AdicionarOutbox")]
+    [Migration("20261022184012_AdicionarOutbox")]
     partial class AdicionarOutbox
     {
         /// <inheritdoc />
@@ -150,6 +150,10 @@ namespace Seguradora.Infrastructure.Persistence.Migrations
 
                     b.HasKey("SequenceNumber");
 
+                    b.HasIndex("EnqueueTime");
+
+                    b.HasIndex("ExpirationTime");
+
                     b.HasIndex("OutboxId", "SequenceNumber")
                         .IsUnique()
                         .HasFilter("[OutboxId] IS NOT NULL");
@@ -166,10 +170,6 @@ namespace Seguradora.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("OutboxId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BusName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -190,7 +190,7 @@ namespace Seguradora.Infrastructure.Persistence.Migrations
 
                     b.HasKey("OutboxId");
 
-                    b.HasIndex("BusName", "Created");
+                    b.HasIndex("Created");
 
                     b.ToTable("OutboxState");
                 });

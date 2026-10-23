@@ -19,6 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHealthChecks();
 
 // Configurações validadas na partida: sem chave JWT, a aplicação nem sobe
 builder.Services.AddOptions<JwtSettings>()
@@ -99,6 +100,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapHealthChecks("/health").AllowAnonymous();
 app.MapControllers();
 app.Run();
 

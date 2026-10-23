@@ -42,6 +42,10 @@ jobs:
           name: relatorio-cobertura
           path: cobertura/relatorio
 
+      - name: Validar manifestos Kubernetes
+        run: |
+          docker run --rm -v "$PWD/k8s:/k8s" ghcr.io/yannh/kubeconform:latest -strict -summary /k8s
+
   publicar-imagem:
     needs: build-e-testes
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'

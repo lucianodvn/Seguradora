@@ -42,5 +42,26 @@ jobs:
           name: relatorio-cobertura
           path: cobertura/relatorio
 
-      - name: Build da imagem Docker
-        run: docker build -t seguradora-api .
+  publicar-imagem:
+    needs: build-e-testes
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/lucianodvn/seguradora-api:latest
+            ghcr.io/lucianodvn/seguradora-api:${{ github.sha }}
